@@ -1,0 +1,38 @@
+.order-list {
+  margin: 20px;
+}
+
+.order-list h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.order-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-list th,
+.order-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-list th {
+  background-color: #f2f2f2;
+}
+
+.order-list tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.order-list tbody tr:hover {
+  background-color: #ebebeb;
+}
+
+@media (max-width: 768px) {
+  .order-list table {
+    font-size: 14px;
+  }
+}

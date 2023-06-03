@@ -1,8 +1,8 @@
 // axiosInstance.js
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
-	baseURL: "http://127.0.0.1:8080/api/v1",
+  baseURL: 'http://127.0.0.1:8080/api',
 });
 
-export { instance };
+export default instance;
