@@ -6,7 +6,4 @@ module.exports = {
   printWidth: 80,
   endOfLine: 'auto',
   arrowParens: 'always',
-  plugins: [
-    "prettier-plugin-eslint"
-  ]
 };

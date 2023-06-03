@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import instance from '../../API/axiosInstance';
 import { setUser, clearUser, setToken } from '../../redux/auth';
 
 const Login = () => {
-  const authUser = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const { register, reset, handleSubmit } = useForm();
@@ -20,7 +20,14 @@ const Login = () => {
   useEffect(() => {
     // console.log(authUser);
   });
-  return (
+  // eslint-disable-next-line no-nested-ternary
+  return user ? (
+    user.role === 'farmer' ? (
+      <Navigate to="/orders" />
+    ) : (
+      <Navigate to="/dashboard/orders" />
+    )
+  ) : (
     <div className="create-fertilizer">
       <div className="create-form">
         <h3>

@@ -11,6 +11,7 @@ import AuthRoutes from '../middleware/AuthRoutes';
 import UseNavbar from '../customHook/UseNavbarHook';
 import Register from './login/Register';
 import Logout from './login/Logout';
+import StoreOrders from '../view/StoreKepper/StoreOrders';
 
 const RouteComponent = () => {
   return (
@@ -32,7 +33,7 @@ const RouteComponent = () => {
                 element={<CreateFertilizerForm />}
               />
               <Route path="/dashboard/seeds" element={<CreateSeedForm />} />
-              <Route path="/dashboard/orders" element={<CreateSeedForm />} />
+              <Route path="/dashboard/orders" element={<StoreOrders />} />
             </Route>
           </Routes>
         </BrowserRouter>

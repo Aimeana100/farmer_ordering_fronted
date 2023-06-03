@@ -65,5 +65,8 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'consistent-return': ['off', { treatUndefinedAsUnspecified: true }],
+    'no-underscore-dangle': ['off', { allowInObjectDestructuring: false }],
+    'no-restricted-globals': ['off', 'event', 'fdescribe'],
   },
 };

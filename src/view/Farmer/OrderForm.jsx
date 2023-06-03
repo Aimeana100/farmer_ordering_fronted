@@ -4,20 +4,18 @@ import instance from '../../API/axiosInstance';
 
 const OrderForm = () => {
   const { register, handleSubmit, reset, watch } = useForm();
-  const size = watch('size') || 0;
+  const landSize = watch('landSize') || 0;
   const seed = watch('seed') || null;
   const [seeds, setSeeds] = useState([]);
 
   const createOrder = async (data) => {
-    await instance.post('/order/create', data).then((res) => {
-      console.log(res);
-    });
+    await instance.post('/order/create', data).then((res) => {});
     reset();
   };
 
   useEffect(() => {
     const getSeeds = async () => {
-      await instance.get('/seed/all').then((res) => {
+      await instance.get('/seeds/all').then((res) => {
         console.log(res.data.data);
         setSeeds(res.data.data);
       });
@@ -29,7 +27,7 @@ const OrderForm = () => {
     <div className="create-fertilizer">
       <div className="create-form">
         <h3>
-          <strong>Order Seed && Fertlizer</strong>
+          <strong>Order Seed || Fertlizer</strong>
         </h3>
 
         <div>
@@ -40,23 +38,26 @@ const OrderForm = () => {
               onSubmit={handleSubmit(createOrder)}
             >
               <div>
-                <label htmlFor="size"> Land size</label>
+                <label htmlFor="landSize"> Land Size</label>
                 <input
                   type="number"
-                  name="size"
+                  name="landSize"
                   step="any"
-                  id="size"
-                  placeholder="...size"
+                  id="landSize"
+                  placeholder="...landSize"
                   required
-                  {...register('size')}
+                  {...register('landSize')}
                 />
               </div>
               <div>
                 <label htmlFor="seed">Seeds</label>
                 <select name="seed" id="seed" required {...register('seed')}>
+                  <option selected value="" disabled>
+                    --select --
+                  </option>
                   {seeds && seeds.length !== 0
                     ? seeds.map((el, i) => (
-                        <option key={i * 100} value={el.id}>
+                        <option key={i * 100} value={el._id}>
                           {el.name}
                         </option>
                       ))
@@ -81,27 +82,33 @@ const OrderForm = () => {
 										: null}
 								</select>
 							</div> */}
-              {seed ? (
+              {seed && seeds ? (
                 <p>
                   Total quantity of seeds :{' '}
-                  {Number(
-                    seeds.filter((el) => el.id === Number(seed))[0]
-                      .kg_per_acre * size
-                  )}{' '}
+                  {
+                    seeds.filter((el) => {
+                      return el._id === seed;
+                    })[0].name
+                  }
+                  {`: ${landSize} `}
                   Kg
                 </p>
               ) : null}
 
-              {/* {fertilizer ? (
+              {seed && seeds ? (
                 <p>
                   Total quantity of fertilizer :{' '}
-                  {Number(
-                    seeds.filter((el) => el.id === Number(fertilizer))[0]
-                      .kg_per_acre * size
-                  )}{' '}
-                  Kg
+                  <ull>
+                    {seeds
+                      .filter((el) => el._id === seed)[0]
+                      .fertilizers.map((el, index) => (
+                        <li key={index}>
+                          {el.name}: {el.kg_per_acre * landSize} Kg{' '}
+                        </li>
+                      ))}
+                  </ull>
                 </p>
-              ) : null} */}
+              ) : null}
 
               <div className="button-container">
                 <button type="submit" className="add-button">

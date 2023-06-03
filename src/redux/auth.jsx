@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { preSetToken } from '../API/axiosInstance';
 
 // First, define the reducer and action creators via `createSlice`
 const userSlice = createSlice({
@@ -16,7 +17,8 @@ const userSlice = createSlice({
     },
     setToken: (state, action) => {
       state.token = action.payload;
-      localStorage.setItem('token', JSON.stringify(action.payload));
+      preSetToken(JSON.stringify(action.payload));
+      // localStorage.setItem('token', );
     },
     clearUser: (state) => {
       state.user = null;

@@ -7,9 +7,7 @@ const AuthRoutes = ({ roles }) => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const hasAccess = roles.includes(user.role);
-  useEffect(() => {
-    console.log(user);
-  });
+  useEffect(() => {});
   if (!user) return async () => dispatch(clearUser());
   return !hasAccess ? <Navigate to="/" /> : <Outlet />;
 };

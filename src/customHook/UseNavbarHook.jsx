@@ -19,6 +19,10 @@ const UseNavbarHook = () => {
       to: '/new-order',
       text: 'New order',
     },
+    {
+      to: '/logout',
+      text: 'Logout',
+    },
   ];
   const storeKeeperLinks = [
     {
