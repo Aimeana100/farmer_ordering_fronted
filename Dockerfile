@@ -10,6 +10,6 @@ RUN npm install
 RUN npm run build
 RUN ls -ali
 
-EXPOSE 5005
+EXPOSE 5000
 
 CMD ["npm", "start"]
