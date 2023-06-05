@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  frontend:
+    build: .
+    volumes:
+      - /app/node_modules
+      - ./farmer_ordering_fronted:/app
+    ports:
+      - "5005:5005"
+volumes:
+  data:
+networks:
+  shared-network:
